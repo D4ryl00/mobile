@@ -582,7 +582,7 @@ func (s *funcSummary) asSignature(g *ObjcGen) string {
 		}
 		params = append(params, fmt.Sprintf("%s:(%s)%s", key, g.objcType(p.typ)+"* _Nullable", p.name))
 	}
-	if params[len(params)-1] == ":(NSError* _Nullable* _Nullable)error" &&
+	if len(params) > 0 && params[len(params)-1] == ":(NSError* _Nullable* _Nullable)error" &&
 		(s.ret == "NSData* _Nullable" || s.ret == "NSString* _Nullable") {
 		params = append(params, "__attribute__((swift_error(nonnull_error)))")
 	}
